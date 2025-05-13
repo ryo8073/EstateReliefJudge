@@ -4,6 +4,7 @@ import { referenceData } from '../data/referenceData';
 import FilterSelector from '../components/FilterSelector';
 import ResultDisplay from '../components/ResultDisplay';
 import ReferenceTable from '../components/ReferenceTable';
+import Head from 'next/head';
 
 const filterLabels = [
   '土地貸借',
@@ -54,54 +55,59 @@ const CalculatorPage: React.FC = () => {
   const handleClear = () => setFilters(['', '', '', '', '']);
 
   return (
-    <main style={{ maxWidth: 600, margin: '40px auto', padding: 24 }}>
-      <h1 style={{ fontSize: 28, fontWeight: 800, color: '#3730a3', marginBottom: 32, textAlign: 'center' }}>
-        小規模宅地等の特例 判定アプリ
-      </h1>
-      <form
-        style={{
-          background: '#e0e7ff',
-          borderRadius: 16,
-          padding: 24,
-          boxShadow: '0 2px 12px rgba(99,102,241,0.08)',
-          marginBottom: 32,
-        }}
-        onSubmit={e => e.preventDefault()}
-      >
-        {filterLabels.map((label, idx) => (
-          <FilterSelector
-            key={label}
-            label={label}
-            options={optionsList[idx]}
-            value={filters[idx]}
-            onChange={val => setFilters(f => f.map((v, i) => (i === idx ? val : (i > idx ? '' : v))))}
-            disabled={idx > 0 && !filters[idx - 1]}
-          />
-        ))}
-        <button
-          type="button"
-          onClick={handleClear}
+    <>
+      <Head>
+        <title>小規模宅地等の特例 判定アプリ</title>
+      </Head>
+      <main style={{ maxWidth: 600, margin: '40px auto', padding: 24 }}>
+        <h1 style={{ fontSize: 28, fontWeight: 800, color: '#3730a3', marginBottom: 32, textAlign: 'center' }}>
+          小規模宅地等の特例 判定アプリ
+        </h1>
+        <form
           style={{
-            marginTop: 12,
-            background: '#fff',
-            color: '#6366f1',
-            border: '2px solid #6366f1',
-            borderRadius: 6,
-            padding: '8px 20px',
-            fontWeight: 700,
-            fontSize: 16,
-            cursor: 'pointer',
-            float: 'right',
-            boxShadow: '0 1px 4px rgba(99,102,241,0.07)',
-            transition: 'background 0.2s, color 0.2s',
+            background: '#e0e7ff',
+            borderRadius: 16,
+            padding: 24,
+            boxShadow: '0 2px 12px rgba(99,102,241,0.08)',
+            marginBottom: 32,
           }}
+          onSubmit={e => e.preventDefault()}
         >
-          クリア
-        </button>
-      </form>
-      <ResultDisplay results={result} referenceData={referenceData} />
-      <ReferenceTable data={referenceData} />
-    </main>
+          {filterLabels.map((label, idx) => (
+            <FilterSelector
+              key={label}
+              label={label}
+              options={optionsList[idx]}
+              value={filters[idx]}
+              onChange={val => setFilters(f => f.map((v, i) => (i === idx ? val : (i > idx ? '' : v))))}
+              disabled={idx > 0 && !filters[idx - 1]}
+            />
+          ))}
+          <button
+            type="button"
+            onClick={handleClear}
+            style={{
+              marginTop: 12,
+              background: '#fff',
+              color: '#6366f1',
+              border: '2px solid #6366f1',
+              borderRadius: 6,
+              padding: '8px 20px',
+              fontWeight: 700,
+              fontSize: 16,
+              cursor: 'pointer',
+              float: 'right',
+              boxShadow: '0 1px 4px rgba(99,102,241,0.07)',
+              transition: 'background 0.2s, color 0.2s',
+            }}
+          >
+            クリア
+          </button>
+        </form>
+        <ResultDisplay results={result} referenceData={referenceData} />
+        <ReferenceTable data={referenceData} />
+      </main>
+    </>
   );
 };
 
