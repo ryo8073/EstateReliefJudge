@@ -12,6 +12,7 @@ export interface LandDataItem {
   exceptionType: string;      // G列: 小規模宅地等の特例 (例: "特定居住用")
   limitArea: string;          // H列: 限度面積 (例: "330㎡")
   reductionRate: string;      // J列: 減額割合 (例: "80%")
+  note?: string;             // 備考（例: *以降の説明文）
 }
 
 /**
