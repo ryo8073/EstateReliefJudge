@@ -1,13 +1,14 @@
 import React from 'react';
-import { ReferenceItem } from '../data/interfaces';
+import { ReferenceItem, LandDataItem } from '../data/interfaces';
 
 interface ResultDisplayProps {
   results: string[];
   description?: string;
   referenceData?: ReferenceItem[];
+  matchedLandData?: LandDataItem[];
 }
 
-const ResultDisplay: React.FC<ResultDisplayProps> = ({ results, description, referenceData }) => {
+const ResultDisplay: React.FC<ResultDisplayProps> = ({ results, description, referenceData, matchedLandData = [] }) => {
   // 結果に該当するreferenceDataを抽出
   const matched = (referenceData && results.length > 0)
     ? referenceData.filter(ref => results.includes(ref.exceptionType))
@@ -61,6 +62,16 @@ const ResultDisplay: React.FC<ResultDisplayProps> = ({ results, description, ref
               ))}
             </tbody>
           </table>
+          {/* noteの表示 */}
+          {matchedLandData && matchedLandData.some(ld => ld.note) && (
+            <div style={{ marginTop: 12 }}>
+              {matchedLandData.filter(ld => ld.note).map((ld, i) => (
+                <div key={i} style={{ color: '#b91c1c', fontSize: 14, marginTop: 4 }}>
+                  {ld.note}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       )}
     </section>

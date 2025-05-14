@@ -51,6 +51,18 @@ const CalculatorPage: React.FC = () => {
     return types.length ? types : ['適用不可'];
   }, [filters]);
 
+  // note表示用: 合致したlandData配列
+  const matchedLandData = useMemo(() => {
+    if (filters.some(f => !f)) return [];
+    return landData.filter(item =>
+      item.landLeaseType === filters[0] &&
+      item.buildingOwner === filters[1] &&
+      item.buildingUser === filters[2] &&
+      item.buildingLeaseType === filters[3] &&
+      item.usageType === filters[4]
+    );
+  }, [filters]);
+
   // クリア
   const handleClear = () => setFilters(['', '', '', '', '']);
 
@@ -104,7 +116,7 @@ const CalculatorPage: React.FC = () => {
             クリア
           </button>
         </form>
-        <ResultDisplay results={result} referenceData={referenceData} />
+        <ResultDisplay results={result} referenceData={referenceData} matchedLandData={matchedLandData} />
         <ReferenceTable data={referenceData} />
       </main>
     </>
