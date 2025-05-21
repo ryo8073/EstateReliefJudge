@@ -85,16 +85,23 @@ const CalculatorPage: React.FC = () => {
           }}
           onSubmit={e => e.preventDefault()}
         >
-          {filterLabels.map((label, idx) => (
-            <FilterSelector
-              key={label}
-              label={label}
-              options={optionsList[idx]}
-              value={filters[idx]}
-              onChange={val => setFilters(f => f.map((v, i) => (i === idx ? val : (i > idx ? '' : v))))}
-              disabled={idx > 0 && !filters[idx - 1]}
-            />
-          ))}
+          {filterLabels.map((label, idx) => {
+            // 次に入力すべき項目のインデックスを計算
+            const firstEmptyIdx = filters.findIndex(f => !f);
+            // ただし、firstEmptyIdxが-1（全て入力済み）の場合はどれも太枠にしない
+            const isActive = firstEmptyIdx === idx && firstEmptyIdx !== -1;
+            return (
+              <FilterSelector
+                key={label}
+                label={label}
+                options={optionsList[idx]}
+                value={filters[idx]}
+                onChange={val => setFilters(f => f.map((v, i) => (i === idx ? val : (i > idx ? '' : v))))}
+                disabled={idx > 0 && !filters[idx - 1]}
+                isActive={isActive}
+              />
+            );
+          })}
           <button
             type="button"
             onClick={handleClear}
