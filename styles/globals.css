@@ -71,43 +71,12 @@ select, button, input {
 }
 
 /* --- ダークモード対応 --- */
-@media (prefers-color-scheme: dark) {
-  html, body {
-    background: #181a20;
-    color: #f3f4f6;
-  }
-  h1, h2, h3, h4, h5, h6 {
-    color: #e0e7ff;
-  }
-  a {
-    color: #a5b4fc;
-  }
-  main, form, section, .card, table {
-    background: #23263a !important;
-    color: #f3f4f6 !important;
-    box-shadow: 0 2px 12px rgba(30,41,59,0.18) !important;
-  }
-  select, button, input {
-    background: #23263a;
-    color: #f3f4f6;
-    border-color: #a5b4fc;
-  }
-  ::-webkit-scrollbar {
-    background: #23263a;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #6366f1;
-  }
-  /* テーブルのストライプや枠線もダーク用に */
-  table {
-    border-color: #374151;
-  }
-  th, td {
-    border-color: #374151;
-  }
-  /* カードやセクションの色 */
-  .card, section {
-    background: #23263a !important;
-    color: #f3f4f6 !important;
-  }
+/* テーブルのストライプや枠線もダーク用に */
+table, th, td {
+  border-color: #e5e7eb;
+}
+/* カードやセクションの色 */
+.card, section {
+  background: #fff !important;
+  color: #222 !important;
 } 

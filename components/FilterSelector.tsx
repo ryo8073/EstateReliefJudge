@@ -16,7 +16,7 @@ export const FilterSelector: React.FC<FilterSelectorProps> = ({ label, options, 
       </label>
       <div
         style={{
-          background: disabled ? '#f3f4f6' : '#e0e7ff', // 周囲に色（非活性時はグレー）
+          background: disabled ? '#f4f6fb' : '#e0e7ff', // 周囲に色（非活性時はグレー）
           borderRadius: 8,
           padding: 12,
           boxShadow: '0 1px 4px rgba(0,0,0,0.04)',
@@ -36,7 +36,7 @@ export const FilterSelector: React.FC<FilterSelectorProps> = ({ label, options, 
             color: '#222',
             fontSize: 16,
             outline: 'none',
-            boxShadow: disabled ? 'none' : '0 0 0 2px #a5b4fc',
+            boxShadow: disabled ? 'none' : '0 0 0 2px #6366f1',
             transition: 'box-shadow 0.2s',
             cursor: disabled ? 'not-allowed' : 'pointer',
             appearance: 'none',
